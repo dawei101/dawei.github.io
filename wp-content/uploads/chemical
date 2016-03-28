@@ -1,0 +1,279 @@
+#!/usr/bin/python
+import sys
+import time
+import re
+import random
+
+
+TMAP = {}
+CS = []
+C1MS = {}
+C2MS = {}
+P_LEN = 50
+
+def read_data(fpath):
+    f = open(fpath)
+    cs_set = set()
+    for line in f.read().strip().split('\n'):
+        m, c1, c2, p = re.match(
+            r'M(\d+)[\t ]+(C\d+)[\t ]+(C\d+)[\t ]+(\d+)', line.strip()).group(1, 2, 3, 4)
+        m = Machine(m, p, c1, c2)
+        TMAP[(c1, c2)] = m
+        if c1 not in C1MS:
+            C1MS[c1] = []
+        C1MS[c1].append(m)
+        if c2 not in C2MS:
+            C2MS[c2] = []
+        C2MS[c2].append(m)
+        cs_set.add(c1)
+
+    for ms in C1MS.values():
+        ms.sort(key=lambda m: m.price)
+    for ms in C2MS.values():
+        ms.sort(key=lambda m: m.price)
+
+    CS.extend(list(cs_set))
+
+
+class Machine(object):
+
+    def __init__(self, m, p, fc, tc):
+        self.id, self.price = int(m), int(p)
+        self.from_c, self.to_c = fc, tc
+
+    def optimized_mlsts(self):
+        i, j = 0, 0
+        while True:
+            mt = C1MS[self.from_c][i]
+            mf = C2MS[self.to_c][j]
+            if mt.price + mf.price < self.price:
+                yield mt, mf
+            else:
+                break
+            if mt.price < mf.price:
+                i += 1
+            else:
+                j += 1
+
+    def __str__(self):
+        return "Machine:%s, %s[%s>%s]" % (self.id, self.price, self.from_c, self.to_c)
+
+
+class DNA(object):
+
+    def __init__(self, cs):
+        self.cs = cs[:]
+
+        self.cost = 0
+        self.fit_rate  = 0
+        self.optimized_ms = [TMAP[(cs[i-1], cs[i])] for i in range(len(cs))]
+        self.get_cost()
+        self._ms = None
+
+    def get_fitness(self):
+        return 1.0/self.get_cost()
+
+    def get_cost(self):
+        if self.cost == 0:
+            for m in self.optimized_ms[:]:
+                for m1, m2 in m.optimized_mlsts():
+                    if self.instead(m, m1, m2):
+                        break
+            self.cost = sum([m.price for m in self.optimized_ms])
+        return self.cost
+
+    def instead(self, m, m1, m2):
+        if m.from_c != m1.from_c:
+            m1, m2 = m2, m1
+        i = None
+        for j, m0 in enumerate(self.optimized_ms):
+            if m0 == m:
+                i = j
+                break
+        if i is None:
+            return True
+        i = self.optimized_ms.index(m)
+        new_ms = list(
+            set(self.optimized_ms[:i] + self.optimized_ms[i+1:] + [m1, m2]))
+
+        track_d = {}
+        for m in new_ms:
+            if m.from_c not in track_d: track_d[m.from_c] = []
+            track_d[m.from_c].append(m)
+        ps = set([m1.to_c])
+        end_p = m2.from_c
+        tracked_ps = set()
+        while end_p not in ps:
+            nps = set([m.to_c for p in ps-tracked_ps for m in track_d[p]])
+            tracked_ps.update(ps)
+            if not nps:
+                return False
+            ps = nps
+        self.optimized_ms = new_ms
+        return True
+        #TODO
+        fms = [m for m in track_d[m1.to_c] if m != m1]
+        tms = [m for m in new_ms if m.from_c == m2.from_c and m != m2]
+        mgps = [(m1, m2, TMAP[(m1.from_c, m2.to_c)]) \
+            for m1 in fms for m2 in tms if (
+                m1.from_c!=m2.to_c and \
+                TMAP[(m1.from_c, m2.to_c)].price<m1.price+m2.price)]
+        ms = sorted(mgps, key=lambda mg: mg[2].price)
+        if ms:
+            m1, m2, m = ms[0]
+            new_ms.append(m)
+            new_ms.remove(m1)
+            new_ms.remove(m2)
+
+    def get_ms(self):
+        if not self._ms:
+            self._ms = sorted([m.id for m in self.optimized_ms])
+        return self._ms
+
+    def __str__(self):
+        return ' '.join(map(str, self.get_ms()))
+
+    def __hash__(self):
+        self.get_cost()
+        return hash(str(self.get_ms()))
+
+    def __eq__(self, dna):
+        return isinstance(dna, DNA) and self.get_ms()==dna.get_ms()
+
+variation_rate = 0.4
+
+def variate(dna):
+    cs = dna.cs[:]
+    if random.randint(0, 100) < variation_rate*100:
+        mi = 0
+        while mi < 4:
+            mi += 1
+            i = random.randint(1, len(cs)-1)
+            j = i
+            while i==j:
+                j = random.randint(1, len(cs)-1)
+            cs[i], cs[j] = cs[j], cs[i]
+        return DNA(cs)
+
+
+class Selector(object):
+
+    def __init__(self, dnas):
+        self.dnas = dnas
+
+    def next(self):
+        r = random.random()
+        m = 0
+        for n in self.dnas:
+            m += n.fit_rate
+            if m>=r:
+                return n
+
+
+def mate(dnas):
+
+    sel = Selector(dnas)
+    ns = set(dnas[:1])
+    c = int(P_LEN * 1.5)
+
+    while c > 0:
+        d1 = sel.next().cs
+        d2 = sel.next().cs
+        k = random.randint((len(CS)-1)/4, 3*(len(CS)-1)/4)
+        nd11, nd12 = d2[:k], d1[k:]
+        nd21, nd22 = d1[:k], d2[k:]
+        r1 = [i for i, a in enumerate(nd11) if a in nd12]
+        r2 = [i for i, a in enumerate(nd21) if a in nd22]
+        for i in range(len(r1)):
+            nd11[r1[i]], nd21[r2[0-i]] = nd21[r2[0-i]], nd11[r1[i]]
+        ndna1, ndna2 = DNA(nd11+nd12), DNA(nd21+nd22)
+        ns.update([ndna1, ndna2])
+
+        for n in [ndna1, ndna2]:
+            nn = variate(n)
+            nn and ns.add(nn)
+        c -= 1
+    return list(ns)
+
+
+def count_fit_rate(dnas, Record, max_len=P_LEN):
+    dnas = sorted(dnas, key=lambda dna: dna.get_cost())[:P_LEN]
+    s = sum([dna.get_cost() for dna in dnas])
+    for dna in dnas:
+        dna.fit_rate = dna.get_cost()*1.0/s
+    Record.set_best(dnas[0])
+    return dnas
+
+
+def get_gp_dnas(l=P_LEN):
+    dnas = []
+    while len(dnas) < l:
+        random.shuffle(CS)
+        dnas.append(DNA(CS))
+    return dnas
+
+
+class Record(object):
+    dna = None
+
+    rate_horizontal_rpt = 0
+    best_horizontal_rpt = 0
+
+    @staticmethod
+    def set_best(dna):
+        if dna and Record.dna and dna.get_cost() == Record.dna.get_cost():
+            Record.best_horizontal_rpt += 1
+        else:
+            Record.best_horizontal_rpt = 0
+            if dna and Record.dna:
+                Record.rate_horizontal_rpt = 0
+        Record.dna = dna
+
+    @staticmethod
+    def catastrophe():
+        Record.rate_horizontal_rpt += 1
+
+    @staticmethod
+    def add_best_to_lst(dnas):
+        if Record.best_horizontal_rpt > len(CS):
+            dnas.append(Record.dna)
+        return dnas
+
+    @staticmethod
+    def should_catastrophe():
+        return Record.best_horizontal_rpt > len(CS)*1.5
+
+    @staticmethod
+    def is_best_enough():
+        return Record.rate_horizontal_rpt >= len(CS)*1.5
+
+def run():
+
+    start_t = time.clock()
+
+    dnas = get_gp_dnas(len(CS)*P_LEN)
+
+    while not Record.is_best_enough():
+        if Record.should_catastrophe():
+            Record.catastrophe()
+            best_dna = Record.dna
+            Record.set_best(None)
+            dnas = get_gp_dnas(len(CS)*P_LEN)
+            best_dna and dnas.append(best_dna)
+        dnas = count_fit_rate(dnas, Record)
+        dnas = mate(dnas)
+    print Record.dna.get_cost()
+    print Record.dna
+    #print time.clock() - start_t
+
+
+
+if __name__=="__main__":
+
+    if len(sys.argv)!=2:
+        sys.exit(1)
+    fpath = sys.argv[1]
+
+    read_data(fpath)
+    run()
+
