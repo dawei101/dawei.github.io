@@ -1,8 +1,8 @@
 ---
-id: 54
+id: 2016040801
 title: Dont put your resume ahead of the requirements
 date: 2016-04-08
-author:  Nitin Borwankar ,Dawei
+author:  Nitin Borwankar
 layout: post
 guid: http://bookwikiup.com/blog/?p=54
 permalink: /97-things-every-software-architect-should-know/dont-put-your-resume-ahead-of-the-requirements/
@@ -36,8 +36,3 @@ Your family will love you for it, too - they'll notice the difference when you g
 Overall always put the customer's long-term needs ahead of your own short term needs and you
 won't go wrong.
 
-作为工程师，我们有时候我们推荐解决问题的技术、思想、方式方法，是因为我们的简历上有这些东西（我们更熟悉这些东西），而不是因为这是最好的解决方案。这样的决定很少能有好的结果。
-
-工作中最棒的事情莫过于很多客户极力的推荐你，因为你为他们和他们的项目做了正确的事情。比起过去用个很牛的语言开或很牛的模式做出的很牛的东西，这样的信誉会对你的订单更重要。
-
-未完待续...
