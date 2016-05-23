@@ -15,6 +15,7 @@ coordinating a nation‘s air traffic is an inherently complex problem. Every pl
 air and runway collisions. The flight schedules of aircraft must be managed to avoid airport
 congestion in a continuously changing environment – a sever change in weather throws the entire
 schedule out of whack.
+
 Conversely, accidental complexity grows from the things we feel we must build to mitigate
 essential complexity. The antiquated air traffic control system used today is an example of
 accidental complexity. It was designed to address the essential complexity of controlling the
@@ -22,9 +23,11 @@ traffic of thousands of airplanes, but the solution itself introduces it‘s own
 the air traffic control system used today is so complex that updating it has proven to be difficult
 if not impossible. In much of the world air traffic is guided by technology that is more than 30
 years old.
+
 Many frameworks and vendor "solutions" are the symptoms of the accidental complexity
 disease. Frameworks that solve specific problems are useful. Over-engineered frameworks add
 more complexity than they relieve.
+
 Developers are drawn to complexity like moths to flame, frequently with the same result. Puzzle
 solving is fun, and developers are problem solvers. Who doesn't like the rush of solving some
 incredibly complex problem? In large-scale software, though, removing accidental complexity
