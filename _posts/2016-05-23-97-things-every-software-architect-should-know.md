@@ -1,7 +1,6 @@
 ---
 id: 2016052301
 title: Chances are your biggest problem, isn't technical
-Simplify essential complexity; diminish accidental complexity
 date: 2016-05-23
 author: Mark Ramm
 layout: post
