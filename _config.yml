@@ -1,4 +1,6 @@
 url: http://www.bookwikiup.com
-title: †
-name: 大伟书屋
+title: † 书屋
+name: 书屋
 description: 
+paginate: 5
+paginate_path: "page:num"
