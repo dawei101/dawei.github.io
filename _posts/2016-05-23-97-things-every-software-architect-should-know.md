@@ -4,7 +4,7 @@ title: Chances are your biggest problem, isn't technical
 date: 2016-05-23
 author: Mark Ramm
 layout: post
-permalink: /97-things-every-software-architect-should-know/chances-are-your-biggest-problem-isn-t-technical
+permalink: /97-things-every-software-architect-should-know/chances-are-your-biggest-problem-isn-t-technical.html
 categories:
   - 97 things every software architect should know
 ---

@@ -5,7 +5,7 @@ date: 2016-04-08
 author:  Nitin Borwankar
 layout: post
 guid: http://bookwikiup.com/blog/?p=54
-permalink: /97-things-every-software-architect-should-know/dont-put-your-resume-ahead-of-the-requirements/
+permalink: /97-things-every-software-architect-should-know/dont-put-your-resume-ahead-of-the-requirements.html
 categories:
   - 97 things every software architect should know
 ---

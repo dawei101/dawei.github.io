@@ -4,7 +4,7 @@ title: Simplify essential complexity; diminish accidental complexity
 date: 2016-04-14
 author: Neal Ford
 layout: post
-permalink: /97-things-every-software-architect-should-know/simplify-essential-complexity+diminish-accidental-complexity
+permalink: /97-things-every-software-architect-should-know/simplify-essential-complexity+diminish-accidental-complexity.html
 categories:
   - 97 things every software architect should know
 ---

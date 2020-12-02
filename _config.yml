@@ -4,3 +4,4 @@ name: 书屋
 description: 
 paginate: 5
 paginate_path: "page:num"
+plugins: [jekyll-paginate]
