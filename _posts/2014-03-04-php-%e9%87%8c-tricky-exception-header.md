@@ -4,7 +4,6 @@ title: 'PHP 里, tricky Exception &#038;&#038; header'
 date: 2014-03-04T16:43:28+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=211
 permalink: /2014/03/04/php-%e9%87%8c-tricky-exception-header/
 categories:
   - Tech

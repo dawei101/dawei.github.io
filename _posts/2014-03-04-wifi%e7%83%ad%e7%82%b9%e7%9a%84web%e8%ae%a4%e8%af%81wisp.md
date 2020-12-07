@@ -4,7 +4,6 @@ title: Wifi热点的web认证(wisp)
 date: 2014-03-04T16:46:11+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=217
 permalink: /2014/03/04/wifi%e7%83%ad%e7%82%b9%e7%9a%84web%e8%ae%a4%e8%af%81wisp/
 categories:
   - Tech

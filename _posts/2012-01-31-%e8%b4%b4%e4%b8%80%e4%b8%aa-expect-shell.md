@@ -4,7 +4,6 @@ title: 贴一个 expect shell
 date: 2012-01-31T20:37:25+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=24
 permalink: /2012/01/31/%e8%b4%b4%e4%b8%80%e4%b8%aa-expect-shell/
 categories:
   - Tech

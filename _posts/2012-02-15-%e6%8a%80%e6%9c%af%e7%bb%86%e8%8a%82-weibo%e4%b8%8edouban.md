@@ -4,7 +4,6 @@ title: 技术细节| weibo与douban
 date: 2012-02-15T23:20:50+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=23
 permalink: /2012/02/15/%e6%8a%80%e6%9c%af%e7%bb%86%e8%8a%82-weibo%e4%b8%8edouban/
 categories:
   - Tech

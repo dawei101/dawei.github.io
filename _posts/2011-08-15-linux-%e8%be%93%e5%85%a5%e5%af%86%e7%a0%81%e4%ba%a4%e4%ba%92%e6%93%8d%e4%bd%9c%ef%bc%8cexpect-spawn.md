@@ -4,7 +4,6 @@ title: linux 输入密码交互操作，expect spawn
 date: 2011-08-15T12:11:38+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=34
 permalink: /2011/08/15/linux-%e8%be%93%e5%85%a5%e5%af%86%e7%a0%81%e4%ba%a4%e4%ba%92%e6%93%8d%e4%bd%9c%ef%bc%8cexpect-spawn/
 categories:
   - Tech

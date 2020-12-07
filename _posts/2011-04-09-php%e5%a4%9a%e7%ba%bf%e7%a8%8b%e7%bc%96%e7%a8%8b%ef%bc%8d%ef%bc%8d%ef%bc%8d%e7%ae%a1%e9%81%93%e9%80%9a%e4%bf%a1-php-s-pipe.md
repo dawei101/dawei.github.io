@@ -4,7 +4,6 @@ title: 'PHP多线程编程－－－管道通信 | php "s pipe'
 date: 2011-04-09T11:03:42+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=68
 permalink: /2011/04/09/php%e5%a4%9a%e7%ba%bf%e7%a8%8b%e7%bc%96%e7%a8%8b%ef%bc%8d%ef%bc%8d%ef%bc%8d%e7%ae%a1%e9%81%93%e9%80%9a%e4%bf%a1-php-s-pipe/
 categories:
   - Tech

@@ -4,7 +4,6 @@ title: ELO rating System
 date: 2012-06-07T12:22:20+00:00
 author: dawei
 layout: post
-guid: http://bookwikiup.com/blog/?p=14
 permalink: /2012/06/07/elo-rating-system/
 categories:
   - Tech
