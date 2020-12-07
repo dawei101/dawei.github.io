@@ -7,7 +7,8 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=211
 permalink: /2014/03/04/php-%e9%87%8c-tricky-exception-header/
 categories:
-  - 未分类
+  - Tech
+
 ---
 Php 的header 方法是可以指定response的输出的, 在自定义header时, 如果设备不支持自定义header的话, 就需要在服务端response header 里添加自定义项到Access-Control-Allow-Headers.
 

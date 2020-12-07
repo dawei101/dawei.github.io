@@ -7,7 +7,8 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=14
 permalink: /2012/06/07/elo-rating-system/
 categories:
-  - 未分类
+  - Tech
+
 ---
 ELO rating System  
 其实原理源自国际象棋的排名计算公式，ELO rating System，以发明人Arpad Elo的名字命名，用来计算国际象棋选手的比赛积分和排名。  

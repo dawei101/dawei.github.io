@@ -7,7 +7,8 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=34
 permalink: /2011/08/15/linux-%e8%be%93%e5%85%a5%e5%af%86%e7%a0%81%e4%ba%a4%e4%ba%92%e6%93%8d%e4%bd%9c%ef%bc%8cexpect-spawn/
 categories:
-  - 未分类
+  - Tech
+
 ---
 使用expect实现自动登录的脚本，网上有很多，可是都没有一个明白的说明，初学者一般都是照抄、收藏。可是为什么要这么写却不知其然。本文用一个最短的例子说明脚本的原理。脚本代码如下：  
 ```

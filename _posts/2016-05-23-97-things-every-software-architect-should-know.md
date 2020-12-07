@@ -6,7 +6,8 @@ author: Mark Ramm
 layout: post
 permalink: /97-things-every-software-architect-should-know/chances-are-your-biggest-problem-isn-t-technical.html
 categories:
-  - 97 things every software architect should know
+  - Architect
+  - Tech
 ---
 
 Right now someone's running a failing project to build a payroll system. Probably more than one

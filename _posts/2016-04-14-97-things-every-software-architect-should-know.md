@@ -6,7 +6,9 @@ author: Neal Ford
 layout: post
 permalink: /97-things-every-software-architect-should-know/simplify-essential-complexity+diminish-accidental-complexity.html
 categories:
-  - 97 things every software architect should know
+  - Architect
+  - Tech
+
 ---
 
 Essential complexity represents the difficulty inherent in any problem. For example,

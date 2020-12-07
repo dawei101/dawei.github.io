@@ -7,7 +7,9 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=54
 permalink: /97-things-every-software-architect-should-know/dont-put-your-resume-ahead-of-the-requirements.html
 categories:
-  - 97 things every software architect should know
+  - Tech
+  - Architect
+
 ---
 
 [Download the original book](/uploads/97-things-every-software-architect-should-know.pdf)

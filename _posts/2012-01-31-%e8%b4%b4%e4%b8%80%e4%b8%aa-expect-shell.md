@@ -7,7 +7,8 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=24
 permalink: /2012/01/31/%e8%b4%b4%e4%b8%80%e4%b8%aa-expect-shell/
 categories:
-  - 未分类
+  - Tech
+
 ---
 之前做的fleet 向远程服务器 上传文件的项目用到的一个shell。
   

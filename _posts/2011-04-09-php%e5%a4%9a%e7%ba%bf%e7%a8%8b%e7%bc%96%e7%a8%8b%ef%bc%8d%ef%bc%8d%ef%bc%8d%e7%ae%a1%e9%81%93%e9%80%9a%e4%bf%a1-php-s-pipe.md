@@ -7,7 +7,7 @@ layout: post
 guid: http://bookwikiup.com/blog/?p=68
 permalink: /2011/04/09/php%e5%a4%9a%e7%ba%bf%e7%a8%8b%e7%bc%96%e7%a8%8b%ef%bc%8d%ef%bc%8d%ef%bc%8d%e7%ae%a1%e9%81%93%e9%80%9a%e4%bf%a1-php-s-pipe/
 categories:
-  - 未分类
+  - Tech
 ---
 管道通信：  
 1. 管道可以认为是一个队列，不同的线程都可以往里面写东西，也都可以从里面读东西。写就是  
